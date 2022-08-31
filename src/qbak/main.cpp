@@ -8,6 +8,14 @@ using namespace std;
 
 main()
 {
+    string head_l1 = "       __        __  ";
+    string head_l2 = " ___ _/ /  ___ _/ /__";
+    string head_l3 = "/ _ `/ _ \\/ _ `/  '_/";
+    string head_l4 = "\\_, /_.__/\\_,_/_/\\_\\ ";
+    string head_l5 = " /_/                 ";
+    string ver = "v1.0.0";
+    string cred = "                     by o7q";
+
     // configure time
     time_t n = time(NULL);
     tm *tm = localtime(&n);
@@ -34,28 +42,36 @@ main()
     crtRst.open("qbak_reset.bat");
     crtRst << "@echo off\n"
               "color a\n"
-              "echo        __        __  \n"
-              "echo  ___ _/ /  ___ _/ /__\n"
-              "echo / _ `/ _ \\/ _ `/  '_/\n"
-              "echo \\_, /_.__/\\_,_/_/\\_\\ \n"
-              "echo  /_/                 v1.0.0\n"
-              "echo                      by o7q\n"
-              "echo.\n"
-              "del /f \"qbackups\\qbak_cfg\" 2> nul\n"
-              "echo Config reset, you can now specify a new directory\n"
-              "echo.\n"
-              "echo.\n"
-              "pause";
+              "echo " +
+                  head_l1 + "\n"
+                       "echo " +
+                  head_l2 + "\n"
+                       "echo " +
+                  head_l3 + "\n"
+                       "echo " +
+                  head_l4 + "\n"
+                       "echo " +
+                  head_l5 +
+                  ver + "\n"
+                        "echo " +
+                  cred + "\n"
+                         "echo.\n"
+                         "del /f \"qbackups\\qbak_cfg\" 2> nul\n"
+                         "echo Config reset, you can now specify a new directory.\n"
+                         "echo.\n"
+                         "echo.\n"
+                         "pause";
     crtRst.close();
 
     // display header
     system("color a");
-    cout << "       __        __  \n"
-            " ___ _/ /  ___ _/ /__\n"
-            "/ _ `/ _ \\/ _ `/  '_/\n"
-            "\\_, /_.__/\\_,_/_/\\_\\ \n"
-            " /_/                 v1.0.0\n"
-            "                     by o7q\n\n";
+    cout << head_l1 + "\n" +
+                head_l2 + "\n" +
+                head_l3 + "\n" +
+                head_l4 + "\n" +
+                head_l5 +
+                ver + "\n" +
+                cred + "\n\n";
 
     // check if config exists
     string pthIn;
