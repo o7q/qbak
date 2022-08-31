@@ -1,5 +1,5 @@
 @echo off
 color a
-g++ *.cpp -o "qbak.exe"
+g++ *.cpp -Wall -o "qbak.exe" -static-libstdc++ -static-libgcc
 echo.
 pause

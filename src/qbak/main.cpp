@@ -2,6 +2,7 @@
 #include <ctime>
 #include <string>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -24,17 +25,37 @@ main()
     string t_s_str = to_string(t_s);
 
     // create backups directory
-    string bakLoc = "qbackup." + m_str + d_str + y_str + "_" + t_h_str + t_m_str + t_s_str;
-    string dirCmd = "mkdir qbackups\\" + bakLoc;
+    string bakName = "qbackup." + m_str + d_str + y_str + "_" + t_h_str + t_m_str + t_s_str;
+    string dirCmd = "mkdir qbackups\\" + bakName + "\\qbackup";
     system(dirCmd.c_str());
 
     // create config reset
     ofstream crtRst;
     crtRst.open("qbak_reset.bat");
-    crtRst << "@echo off\ncolor b\ndel /f \"qbackups\\qbak_cfg\" 2> nul\necho Config reset, you can now specify a new directory.\necho.\npause";
+    crtRst << "@echo off\n"
+              "color a\n"
+              "echo        __        __  \n"
+              "echo  ___ _/ /  ___ _/ /__\n"
+              "echo / _ `/ _ \\/ _ `/  '_/\n"
+              "echo \\_, /_.__/\\_,_/_/\\_\\ \n"
+              "echo  /_/                 v1.0.0\n"
+              "echo                      by o7q\n"
+              "echo.\n"
+              "del /f \"qbackups\\qbak_cfg\" 2> nul\n"
+              "echo Config reset, you can now specify a new directory\n"
+              "echo.\n"
+              "echo.\n"
+              "pause";
     crtRst.close();
 
+    // display header
     system("color a");
+    cout << "       __        __  \n"
+            " ___ _/ /  ___ _/ /__\n"
+            "/ _ `/ _ \\/ _ `/  '_/\n"
+            "\\_, /_.__/\\_,_/_/\\_\\ \n"
+            " /_/                 v1.0.0\n"
+            "                     by o7q\n\n";
 
     // check if config exists
     string pthIn;
@@ -58,8 +79,12 @@ main()
     getline(rdCfg, cfg_str);
     rdCfg.close();
 
+    // format config
+    cfg_str.erase(remove(cfg_str.begin(), cfg_str.end(), '"'), cfg_str.end());
+    cfg_str = "\"" + cfg_str + "\" ";
+
     // backup directory work
-    string bakDest = "\"qbackups\\" + bakLoc + "\" ";
-    string bakCmd = "robocopy \"" + cfg_str + "\" " + bakDest + "/e";
+    string bakCmd = "powershell -command \"robocopy " + cfg_str + "\"qbackups\\" + bakName + "\\qbackup" + "\" " + "/e | tee-object " + "\"qbackups\\" + bakName + "\\qbackup.log\"";
     system(bakCmd.c_str());
+    cout << "\n\n";
 }
