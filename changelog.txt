@@ -1,4 +1,5 @@
 ~ v1.0.1
 - Small visual changes
 - Optimize code
+- Change path character limit from [1024] to [4096]
 - Enable -O2 in the compiler
