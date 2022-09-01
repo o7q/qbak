@@ -1,0 +1,4 @@
+~ v1.0.1
+- Small visual changes
+- Optimize code
+- Enable -O2 in the compiler

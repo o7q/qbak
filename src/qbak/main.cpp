@@ -2,18 +2,19 @@
 #include <ctime>
 #include <string>
 #include <fstream>
+#include <regex>
 #include <algorithm>
 
 using namespace std;
 
 main()
 {
-     string head_l1 = "       __        __  ";
-     string head_l2 = " ___ _/ /  ___ _/ /__";
-     string head_l3 = "/ _ `/ _ \\/ _ `/  '_/";
-     string head_l4 = "\\_, /_.__/\\_,_/_/\\_\\ ";
-     string head_l5 = " /_/                 ";
-     string ver = "v1.0.0";
+     string head = "$       __        __  \n"
+                   "$ ___ _/ /  ___ _/ /__\n"
+                   "$/ _ `/ _ \\/ _ `/  '_/\n"
+                   "$\\_, /_.__/\\_,_/_/\\_\\ \n"
+                   "$ /_/                 ";
+     string ver = "v1.0.1";
      string cred = "                     by o7q";
 
      // configure time
@@ -38,39 +39,26 @@ main()
      system(dirCmd.c_str());
 
      // create config reset
+     string head_script = regex_replace(head, regex("\\$"), "echo ");
      ofstream crtRst;
      crtRst.open("qbak_reset.bat");
      crtRst << "@echo off\n"
-               "color a\n"
-               "echo " +
-                   head_l1 + "\n"
-                             "echo " +
-                   head_l2 + "\n"
-                             "echo " +
-                   head_l3 + "\n"
-                             "echo " +
-                   head_l4 + "\n"
-                             "echo " +
-                   head_l5 +
-                   ver + "\n"
-                         "echo " +
-                   cred + "\n"
-                          "echo.\n"
-                          "del /f \"qbackups\\qbak_cfg\" 2> nul\n"
-                          "echo Config reset, you can now specify a new directory.\n"
-                          "echo.\n"
-                          "echo.\n"
-                          "pause";
+               "color a\necho.\n" +
+                   head_script + ver + "\necho " +
+                   cred +
+                   "\ndel /f \"qbackups\\qbak_cfg\" 2> nul\n"
+                   "echo.\n"
+                   "echo Config reset, you can now specify a new directory.\n"
+                   "echo.\n"
+                   "echo.\n"
+                   "pause";
      crtRst.close();
 
-     // display header
+     // configure visuals
      system("color a");
-     cout << head_l1 + "\n" +
-                 head_l2 + "\n" +
-                 head_l3 + "\n" +
-                 head_l4 + "\n" +
-                 head_l5 +
-                 ver + "\n" +
+     string head_display = regex_replace(head, regex("\\$"), "");
+     cout << "\n" +
+                 head_display + ver + "\n" +
                  cred + "\n\n";
 
      // check if config exists
@@ -81,7 +69,7 @@ main()
      {
           // create config
           cout << "Specify a directory:\n> ";
-          char pthIn[1024];
+          char pthIn[4096];
           cin.getline(pthIn, sizeof(pthIn));
           ofstream crtCfg;
           crtCfg.open("qbackups\\qbak_cfg");
