@@ -7,16 +7,17 @@
 
 using namespace std;
 
+// configure global variables
+string head = "$       __        __  \n"
+              "$ ___ _/ /  ___ _/ /__\n"
+              "$/ _ `/ _ \\/ _ `/  '_/\n"
+              "$\\_, /_.__/\\_,_/_/\\_\\ \n"
+              "$ /_/                 ";
+string ver = "v1.0.1";
+string cred = "                     by o7q";
+
 main()
 {
-     string head = "$       __        __  \n"
-                   "$ ___ _/ /  ___ _/ /__\n"
-                   "$/ _ `/ _ \\/ _ `/  '_/\n"
-                   "$\\_, /_.__/\\_,_/_/\\_\\ \n"
-                   "$ /_/                 ";
-     string ver = "v1.0.1";
-     string cred = "                     by o7q";
-
      // configure time
      time_t n = time(NULL);
      tm *tm = localtime(&n);
