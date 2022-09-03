@@ -1,0 +1,1 @@
+- Issue when using some special characters in root folder names, some characters include: "'", """.

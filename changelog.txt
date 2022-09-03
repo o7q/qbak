@@ -1,5 +1,7 @@
-~ v1.0.1
+~ v1.1.0
+- Added a debug system
+- Fixed a major bug causing qbak to malfunction when a folder has a space in its name
+- Removed the max path character length
+- Enabled -O2 in the compiler (smaller executable size)
 - Small visual changes
-- Optimize code
-- Change the path character limit from [1024] to [4096]
-- Enable -O2 in the compiler
+- Optimized code
