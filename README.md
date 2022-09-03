@@ -26,6 +26,7 @@ pause
 cd "C:"
 "qbak.exe"
 goto a
+pause
 ```
 In this example qbak would backup the specified directory after the server shuts down and a key is pressed.\
 qbak can also act as a normal desktop application as in executing it with a double-click.
