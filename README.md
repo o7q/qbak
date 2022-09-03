@@ -1,6 +1,6 @@
 <img src="assets/images/readmebanner.png"/>
 
-# Downloads: https://github.com/o7q/qbak/releases
+# [>> Downloads](https://github.com/o7q/qbak/releases)
 ### Welcome! qbak is an ultra-simple and lightweight command-line based backup tool.
 
 <br>
@@ -39,16 +39,15 @@ qbak will create a log for each backup it makes. The file path for the log will 
 
 <br>
 
-## <b>Debugging</b>
-I created some helpful commands for myself while debugging the program. I left them in because I think they could be helpful to you as well. To use a debug command, simply enter it after the `->` pointer.
+## <b>Commands</b>
+To use a command, simply enter it after the `->` pointer.
+Inserting a `!` before a command tag will disable that command. For example: `$`<b>!</b>`PAUSE`
 
-### <b>Commands</b>
-Inserting a `!` before a command tag will disable that command. For example: `$`<b>!</b>`DEBUG_PAUSE`
-
-`$DEBUG_PAUSE` Enables the pausing of the operation after it completes instead of closing\
-`$DEBUG_OUTCMD` Enables command outputs after the operation completes (works best when `$DEBUG_PAUSE` is enabled)\
-`$DEBUG_PURGE` Destroys all backups, this command is very dangorous and it will prompt you before executing\
-`$DEBUG_EXIT` Exits qbak properly
+`$INFO` Displays program info\
+`$PAUSE` Enables the pausing of the operation after it completes instead of closing\
+`$CMDOUT` Enables command outputs after the operation completes (works best when `$PAUSE` is enabled)\
+`$PURGE` Destroys all backups, this command is very dangorous and it will prompt you before executing\
+`$EXIT` Exits qbak properly
 
 <br>
 

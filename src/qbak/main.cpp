@@ -11,6 +11,7 @@ void program();
 
 // configure functions
 void crtDir();
+void cinClr();
 void clr();
 
 // configure global variables
@@ -19,13 +20,13 @@ string head = "$       __        __  \n"
               "$/ _ `/ _ \\/ _ `/  '_/\n"
               "$\\_, /_.__/\\_,_/_/\\_\\ \n"
               "$ /_/                 ";
-string ver = "v1.1.0";
+string ver = "v1.2.0";
 string cred = "                     by o7q";
 // program variables
 string bakNam;
-int logNum;
-bool debug_pause;
-bool debug_outcmd;
+int bakNum;
+bool cmd_pause;
+bool cmd_cmdout;
 
 main()
 {
@@ -65,12 +66,11 @@ void program()
      crtRst.open("qbak_reset.bat");
      crtRst << "@echo off\n"
                "color a\necho.\n" +
-                   head_script + ver + "\necho " +
-                   cred +
+                   head_script + ver +
+                   "\necho " + cred +
                    "\ndel /f \"qbackups\\qbak_cfg\" 2> nul\n"
                    "echo.\n"
                    "echo Config reset, you can now specify a new directory.\n"
-                   "echo.\n"
                    "echo.\n"
                    "pause";
      crtRst.close();
@@ -81,25 +81,30 @@ void program()
      cout << "\n" +
                  head_display + ver + "\n" +
                  cred + "\n";
-     string n = debug_pause == true || debug_outcmd == true ? "\n" : "";
+     string n = cmd_pause == true || cmd_cmdout == true ? "\n" : "";
      cout << n;
-     string pause0 = debug_pause == true ? "- DEBUG_PAUSE: ON\n" : "";
+     string pause0 = cmd_pause == true ? "- PAUSE: ON\n" : "";
      cout << pause0;
-     string outcmd0 = debug_outcmd == true ? "- DEBUG_OUTCMD: ON\n" : "";
-     cout << outcmd0;
+     string cmdout0 = cmd_cmdout == true ? "- CMDOUT: ON\n" : "";
+     cout << cmdout0;
      cout << "\n";
 
-     // check if config exists
+     // command and directory input
      string in;
      ifstream chkCfg;
      chkCfg.open("qbackups\\qbak_cfg");
      if (!chkCfg)
      {
-          // create config
           cout << "Specify a directory or command:\n-> ";
           getline(cin, in);
-          if (in != "$DEBUG_PAUSE" && in != "$!DEBUG_PAUSE" && in != "$DEBUG_OUTCMD" && in != "$!DEBUG_OUTCMD" && in != "$DEBUG_PURGE" && in != "$DEBUG_EXIT")
+          if (in != "$INFO" && in != "$PAUSE" && in != "$!PAUSE" && in != "$CMDOUT" && in != "$!CMDOUT" && in != "$PURGE" && in != "$EXIT")
           {
+               if (in.find('$') < in.length())
+               {
+                    cout << "\nCommands:\n- INFO\n- PAUSE\n- CMDOUT\n- PURGE\n- EXIT\n\n\n";
+                    system("pause");
+                    clr();
+               }
                ofstream crtCfg;
                crtCfg.open("qbackups\\qbak_cfg");
                crtCfg << in;
@@ -107,59 +112,77 @@ void program()
           }
      }
 
-     // debug_pause
-     if (in == "$DEBUG_PAUSE")
+     // cmd_info
+     if (in == "$INFO")
      {
-          debug_pause = true;
+          cout << "\nqbak by o7q\n"
+                  "An ultra-simple and lightweight command-line based backup tool.\n\n"
+                  "A list of commands can be accessed by inputting a \"$\" after the \"->\" pointer.\n\nOperating Components:\n"
+                  "- robocopy\n\n"
+                  "* Farther documentation can be found on the qbak GitHub page which can be accessed by inputting \"G\".\n"
+                  "To quit, input any other key.\n\n";
+          char g;
+          cin >> g;
+          if (g == 'G' || g == 'g')
+          {
+               system("start https://github.com/o7q/qbak");
+          }
+          cinClr();
           clr();
      }
 
-     // debug_!pause
-     if (in == "$!DEBUG_PAUSE")
+     // cmd_pause
+     if (in == "$PAUSE")
      {
-          debug_pause = false;
+          cmd_pause = true;
           clr();
      }
 
-     // debug_outcmd
-     if (in == "$DEBUG_OUTCMD")
+     // cmd_!pause
+     if (in == "$!PAUSE")
      {
-          debug_outcmd = true;
+          cmd_pause = false;
           clr();
      }
 
-     // debug_!outcmd
-     if (in == "$!DEBUG_OUTCMD")
+     // cmd_cmdout
+     if (in == "$CMDOUT")
      {
-          debug_outcmd = false;
+          cmd_cmdout = true;
           clr();
      }
 
-     // debug_purge
-     if (in == "$DEBUG_PURGE")
+     // cmd_!cmdout
+     if (in == "$!CMDOUT")
+     {
+          cmd_cmdout = false;
+          clr();
+     }
+
+     // cmd_purge
+     if (in == "$PURGE")
      {
           cout << "\nAre you sure? (all backups will be destroyed!) [Y = Yes, N = No]\n-> ";
-          char prompt;
-          cin >> prompt;
-          if (prompt == 'Y' || prompt == 'y')
+          char y;
+          cin >> y;
+          if (y == 'Y' || y == 'y')
           {
                system("del \"qbak_reset.bat\" /f");
                system("rmdir \"qbackups\" /s /q");
-               logNum = 0;
-               if (debug_outcmd == true)
+               bakNum = 0;
+               if (cmd_cmdout == true)
                {
-                    cout << "\nOUTCMD << del \"qbak_reset.bat\" /f\n";
-                    cout << "OUTCMD << \"qbackups\" /s /q\n";
+                    cout << "\nCMDOUT << del \"qbak_reset.bat\" /f\n";
+                    cout << "CMDOUT << \"qbackups\" /s /q\n";
                }
                crtDir();
           }
-          cin.clear();
-          cin.sync();
+          cinClr();
           clr();
      }
 
-     // debug_exit
-     if (in == "$DEBUG_EXIT")
+     // cmd_exit
+     if (in == "$EXIT")
      {
           _Exit(0);
      }
@@ -175,16 +198,18 @@ void program()
      cfg_str = "'" + cfg_str + "' ";
 
      // backup directory work
-     string logNum_str = to_string(logNum);
-     string bakCmd = "powershell -command \"robocopy " + cfg_str + "'qbackups\\" + bakNam + "\\qbackup" + "' " + "/e | tee-object " + "\"qbackups\\" + bakNam + "\\qbackup" + logNum_str + ".log\"\"";
+     string bakNum_str = to_string(bakNum);
+     string bakDirCmd = "mkdir qbackups\\" + bakNam + "\\qbackup" + bakNum_str;
+     system(bakDirCmd.c_str());
+     string bakCmd = "powershell -command \"robocopy " + cfg_str + "'qbackups\\" + bakNam + "\\qbackup" + bakNum_str + "' " + "/e | tee-object " + "\"qbackups\\" + bakNam + "\\qbackup" + bakNum_str + ".log\"\"";
      system(bakCmd.c_str());
-     logNum += 1;
+     bakNum += 1;
      cout << "\n\n";
 
-     // debug
-     string outcmd1 = debug_outcmd == true ? "\n\nOUTCMD << " + bakCmd : "";
-     cout << outcmd1;
-     if (debug_pause == true)
+     // run cmds
+     string cmdout1 = cmd_cmdout == true ? "\n\nCMDOUT << mkdir qbackups\\" + bakNam + "\\qbackup" + bakNum_str + "\nCMDOUT << " + bakCmd : "";
+     cout << cmdout1;
+     if (cmd_pause == true)
      {
           cout << "\n\n";
           system("pause");
@@ -198,23 +223,31 @@ void program()
 // create directory function
 void crtDir()
 {
-     string dirCmd = "mkdir qbackups\\" + bakNam + "\\qbackup";
+     string dirCmd = "mkdir qbackups\\" + bakNam;
      system(dirCmd.c_str());
 
-     // debug
-     string outcmd = debug_outcmd == true ? "OUTCMD << mkdir qbackups\\" + bakNam + "\\qbackup" : "";
-     cout << outcmd;
-     string n = debug_outcmd == true ? "\n\n" : "\n";
-     if (debug_pause == true)
+     // run cmds
+     string cmdout = cmd_cmdout == true ? "CMDOUT << mkdir qbackups\\" + bakNam : "";
+     cout << cmdout;
+     string n = cmd_cmdout == true ? "\n\n" : "\n";
+     if (cmd_pause == true)
      {
           cout << n;
           system("pause");
      }
 }
 
+// cin clear function
+void cinClr()
+{
+     cin.clear();
+     cin.sync();
+}
+
 // clear function
 void clr()
 {
+     system("color 2");
      system("cls");
      program();
 }

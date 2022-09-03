@@ -1,3 +1,11 @@
+~ v1.2.0
+- Added an info command ($INFO)
+- You can now have more than one backup per session
+- Small command QOL update (shortened commands, command error checking)
+- Added an icon to the executable
+- Minor visual changes (fade animation between screen clears)
+- Optimized code
+
 ~ v1.1.0
 - Added a debug system
 - Fixed a major bug causing qbak to malfunction when a folder has a space in its name
