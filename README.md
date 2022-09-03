@@ -43,7 +43,7 @@ qbak will create a log for each backup it makes. The file path for the log will 
 I created some helpful commands for myself while debugging the program. I left them in because I think they could be helpful to you as well. To use a debug command, simply enter it after the `->` pointer.
 
 ### <b>Commands</b>
-Inserting a `!` before a command tag will disable that command. For example: `$`<b>!</b>`DEBUG_PAUSE`
+Inserting a `!` before a command tag will disable that command. For example: <b>$`!`DEBUG_PAUSE</b>
 
 `$DEBUG_PAUSE` Enables the pausing of the operation after it completes instead of closing\
 `$DEBUG_OUTCMD` Enables command outputs after the operation completes (works best when `$DEBUG_PAUSE` is enabled)\
