@@ -1,4 +1,4 @@
-<img src="assets/images/readmebanner.png"/>
+<img src="assets/images/readmebanner.png">
 
 # [>> Downloads](https://github.com/o7q/qbak/releases)
 ### Welcome! qbak is an ultra-simple and lightweight command-line based backup tool.
