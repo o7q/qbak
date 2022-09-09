@@ -131,36 +131,44 @@ void program()
           clr();
      }
 
+     string cmdList[] = {
+         "$PAUSE",
+         "$!PAUSE",
+         "$CMDOUT",
+         "$!CMDOUT",
+         "$PURGE",
+         "$EXIT"};
+
      // cmd_pause
-     if (in == "$PAUSE")
+     if (in == cmdList[0])
      {
           cmd_pause = true;
           clr();
      }
 
      // cmd_!pause
-     if (in == "$!PAUSE")
+     if (in == cmdList[1])
      {
           cmd_pause = false;
           clr();
      }
 
      // cmd_cmdout
-     if (in == "$CMDOUT")
+     if (in == cmdList[2])
      {
           cmd_cmdout = true;
           clr();
      }
 
      // cmd_!cmdout
-     if (in == "$!CMDOUT")
+     if (in == cmdList[3])
      {
           cmd_cmdout = false;
           clr();
      }
 
      // cmd_purge
-     if (in == "$PURGE")
+     if (in == cmdList[4])
      {
           cout << "\nAre you sure? (all backups will be destroyed!) [Y = Yes, N = No]\n-> ";
           char y;
@@ -182,7 +190,7 @@ void program()
      }
 
      // cmd_exit
-     if (in == "$EXIT")
+     if (in == cmdList[5])
      {
           _Exit(0);
      }

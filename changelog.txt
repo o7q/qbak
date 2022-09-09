@@ -1,3 +1,6 @@
+~
+- Optimzed code (using arrays)
+
 ~ v1.2.0
 - Added an info command ($INFO)
 - You can now have more than one backup per session
