@@ -22,7 +22,6 @@ string head = "$       __        __  \n"
               "$ /_/                 ";
 string ver = "v1.2.0";
 string cred = "                     by o7q";
-// program variables
 string bakNam;
 int bakNum;
 bool cmd_pause;
@@ -33,14 +32,12 @@ main()
      // configure time
      time_t n = time(NULL);
      tm *tm = localtime(&n);
-     // create time integers
      int m = 1 + tm->tm_mon;
      int d = tm->tm_mday;
      int y = 1900 + tm->tm_year;
      int t_h = tm->tm_hour;
      int t_m = tm->tm_min;
      int t_s = tm->tm_sec;
-     // ints -> strings
      string m_str = to_string(m);
      string d_str = to_string(d);
      string y_str = to_string(y);
