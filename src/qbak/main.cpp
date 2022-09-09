@@ -5,13 +5,7 @@
 #include <regex>
 #include <algorithm>
 
-using std::cin;
-using std::cout;
-using std::ifstream;
-using std::ofstream;
-using std::regex;
-using std::string;
-using std::to_string;
+using namespace std;
 
 void program();
 
