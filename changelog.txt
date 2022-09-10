@@ -1,5 +1,5 @@
 ~
-- Optimzed code (using arrays)
+- Optimzed code (using arrays, added a string repeater function)
 
 ~ v1.2.0
 - Added an info command ($INFO)
