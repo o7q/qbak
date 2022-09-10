@@ -11,6 +11,7 @@ void program();
 
 // configure functions
 void crtDir();
+string strRep(string charIn, int amount);
 void cinClr();
 void clr();
 
@@ -21,7 +22,7 @@ string head = "$       __        __  \n"
               "$\\_, /_.__/\\_,_/_/\\_\\ \n"
               "$ /_/                 ";
 string ver = "v1.2.0";
-string cred = "                     by o7q";
+string cred;
 string bakNam;
 int bakNum;
 bool cmd_pause;
@@ -48,6 +49,8 @@ main()
      // create backup name and directory
      bakNam = "qbackup." + m_str + d_str + y_str + "_" + t_h_str + t_m_str + t_s_str;
      crtDir();
+
+     cred = strRep(" ", 21) + "by o7q";
 
      // start qbak
      program();
@@ -240,6 +243,17 @@ void crtDir()
           cout << n;
           system("pause");
      }
+}
+
+// 
+string strRep(string charIn, int amount)
+{
+    string output;
+    for (int i = 0; i < amount; i++)
+    {
+        output += charIn;
+    }
+    return output;
 }
 
 // cin clear function
