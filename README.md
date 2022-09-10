@@ -16,7 +16,7 @@
 
 # Usage
 qbak is designed to work alongside a batch or console process. To use qbak, add the line `"qbak.exe"` inside of your batch script file. An example could be (minecraft server scenario):
-```
+```bat
 @echo off
 color a
 :a
