@@ -7,6 +7,17 @@
 
 using namespace std;
 
+namespace cmds
+{
+     string info = "$INFO";
+     string pause = "$PAUSE";
+     string disPause = "$!PAUSE";
+     string cmdOut = "$CMDOUT";
+     string disCmdOut = "$!CMDOUT";
+     string purge = "$PURGE";
+     string exit = "$EXIT";
+}
+
 void program();
 
 // configure functions
@@ -97,7 +108,7 @@ void program()
      {
           cout << "Specify a directory or command:\n-> ";
           getline(cin, in);
-          if (in != "$INFO" && in != "$PAUSE" && in != "$!PAUSE" && in != "$CMDOUT" && in != "$!CMDOUT" && in != "$PURGE" && in != "$EXIT")
+          if (in != cmds::info && in != cmds::pause && in != cmds::disPause && in != cmds::cmdOut && in != cmds::disCmdOut && in != cmds::purge && in != cmds::exit)
           {
                if (in.find('$') < in.length())
                {
@@ -113,7 +124,7 @@ void program()
      }
 
      // cmd_info
-     if (in == "$INFO")
+     if (in == cmds::info)
      {
           cout << "\nqbak by o7q\n"
                   "An ultra-simple and lightweight command-line based backup tool.\n\n"
@@ -131,44 +142,36 @@ void program()
           clr();
      }
 
-     string cmdList[] = {
-         "$PAUSE",
-         "$!PAUSE",
-         "$CMDOUT",
-         "$!CMDOUT",
-         "$PURGE",
-         "$EXIT"};
-
      // cmd_pause
-     if (in == cmdList[0])
+     if (in == cmds::pause)
      {
           cmd_pause = true;
           clr();
      }
 
      // cmd_!pause
-     if (in == cmdList[1])
+     if (in == cmds::disPause)
      {
           cmd_pause = false;
           clr();
      }
 
      // cmd_cmdout
-     if (in == cmdList[2])
+     if (in == cmds::cmdOut)
      {
           cmd_cmdout = true;
           clr();
      }
 
      // cmd_!cmdout
-     if (in == cmdList[3])
+     if (in == cmds::disCmdOut)
      {
           cmd_cmdout = false;
           clr();
      }
 
      // cmd_purge
-     if (in == cmdList[4])
+     if (in == cmds::purge)
      {
           cout << "\nAre you sure? (all backups will be destroyed!) [Y = Yes, N = No]\n-> ";
           char y;
@@ -190,7 +193,7 @@ void program()
      }
 
      // cmd_exit
-     if (in == cmdList[5])
+     if (in == cmds::exit)
      {
           _Exit(0);
      }
@@ -245,15 +248,15 @@ void crtDir()
      }
 }
 
-// 
+//
 string strRep(string charIn, int amount)
 {
-    string output;
-    for (int i = 0; i < amount; i++)
-    {
-        output += charIn;
-    }
-    return output;
+     string output;
+     for (int i = 0; i < amount; i++)
+     {
+          output += charIn;
+     }
+     return output;
 }
 
 // cin clear function
