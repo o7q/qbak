@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace cmds
+namespace cmd
 {
      string info = "$INFO";
      string pause = "$PAUSE";
@@ -108,7 +108,7 @@ void program()
      {
           cout << "Specify a directory or command:\n-> ";
           getline(cin, in);
-          if (in != cmds::info && in != cmds::pause && in != cmds::disPause && in != cmds::cmdOut && in != cmds::disCmdOut && in != cmds::purge && in != cmds::exit)
+          if (in != cmd::info && in != cmd::pause && in != cmd::disPause && in != cmd::cmdOut && in != cmd::disCmdOut && in != cmd::purge && in != cmd::exit)
           {
                if (in.find('$') < in.length())
                {
@@ -124,7 +124,7 @@ void program()
      }
 
      // cmd_info
-     if (in == cmds::info)
+     if (in == cmd::info)
      {
           cout << "\nqbak by o7q\n"
                   "An ultra-simple and lightweight command-line based backup tool.\n\n"
@@ -143,35 +143,35 @@ void program()
      }
 
      // cmd_pause
-     if (in == cmds::pause)
+     if (in == cmd::pause)
      {
           cmd_pause = true;
           clr();
      }
 
      // cmd_!pause
-     if (in == cmds::disPause)
+     if (in == cmd::disPause)
      {
           cmd_pause = false;
           clr();
      }
 
      // cmd_cmdout
-     if (in == cmds::cmdOut)
+     if (in == cmd::cmdOut)
      {
           cmd_cmdout = true;
           clr();
      }
 
      // cmd_!cmdout
-     if (in == cmds::disCmdOut)
+     if (in == cmd::disCmdOut)
      {
           cmd_cmdout = false;
           clr();
      }
 
      // cmd_purge
-     if (in == cmds::purge)
+     if (in == cmd::purge)
      {
           cout << "\nAre you sure? (all backups will be destroyed!) [Y = Yes, N = No]\n-> ";
           char y;
@@ -193,7 +193,7 @@ void program()
      }
 
      // cmd_exit
-     if (in == cmds::exit)
+     if (in == cmd::exit)
      {
           _Exit(0);
      }
