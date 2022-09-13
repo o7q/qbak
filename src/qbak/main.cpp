@@ -32,7 +32,7 @@ string head = "$       __        __  \n"
               "$/ _ `/ _ \\/ _ `/  '_/\n"
               "$\\_, /_.__/\\_,_/_/\\_\\ \n"
               "$ /_/                 ";
-string ver = "v1.2.0";
+string ver = "v1.2.1";
 string cred;
 string bakNam;
 int bakNum;
