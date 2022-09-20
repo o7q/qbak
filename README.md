@@ -10,7 +10,7 @@
 <br>
 
 # Overview
-### qbak takes in a directory and auto-configures powershell scripts to do backup tasks using `robocopy`.
+qbak takes in a directory and auto-configures powershell scripts to do backup tasks using `robocopy`.
 
 <br>
 
