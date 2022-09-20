@@ -1,6 +1,6 @@
 <img src="assets/images/readmebanner.png">
 
-# [>> Downloads](https://github.com/o7q/qbak/releases)
+# [<b>>> Download Latest</b>](https://github.com/o7q/qbak/releases/download/v1.2.1/qbak.exe)
 ### Welcome! qbak is an ultra-simple and lightweight command-line based backup tool.
 
 <br>
