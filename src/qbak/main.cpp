@@ -41,6 +41,8 @@ bool cmd_cmdout;
 
 main()
 {
+     system(("title qbak " + ver).c_str());
+     
      // configure time
      time_t n = time(NULL);
      tm *tm = localtime(&n);
