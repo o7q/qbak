@@ -145,32 +145,16 @@ void program()
      }
 
      // cmd_pause
-     if (in == cmd::pause)
-     {
-          cmd_pause = true;
-          clr();
-     }
+     if (in == cmd::pause) { cmd_pause = true; clr(); } 
 
      // cmd_!pause
-     if (in == cmd::disPause)
-     {
-          cmd_pause = false;
-          clr();
-     }
+     if (in == cmd::disPause) { cmd_pause = false; clr(); }
 
      // cmd_cmdout
-     if (in == cmd::cmdOut)
-     {
-          cmd_cmdout = true;
-          clr();
-     }
+     if (in == cmd::cmdOut) { cmd_cmdout = true; clr(); }
 
      // cmd_!cmdout
-     if (in == cmd::disCmdOut)
-     {
-          cmd_cmdout = false;
-          clr();
-     }
+     if (in == cmd::disCmdOut) { cmd_cmdout = false; clr(); }
 
      // cmd_purge
      if (in == cmd::purge)
@@ -195,10 +179,7 @@ void program()
      }
 
      // cmd_exit
-     if (in == cmd::exit)
-     {
-          _Exit(0);
-     }
+     if (in == cmd::exit) _Exit(0);
 
      // read config
      string cfg_str;
@@ -254,10 +235,7 @@ void crtDir()
 string strRep(string charIn, int amount)
 {
      string output;
-     for (int i = 0; i < amount; i++)
-     {
-          output += charIn;
-     }
+     for (int i = 0; i < amount; i++) output += charIn; 
      return output;
 }
 
