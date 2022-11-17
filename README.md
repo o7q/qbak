@@ -43,10 +43,10 @@ qbak will create a log for each backup it makes. The file path for the log will 
 To use a command, simply enter it after the `->` pointer.
 Inserting a `!` before a command tag will disable that command. For example: `$`<b>!</b>`PAUSE`
 
-- `$INFO` Displays program info\
-- `$PAUSE` Enables the pausing of the operation after it completes instead of closing\
-- `$CMDOUT` Enables command outputs after the operation completes (works best when `$PAUSE` is enabled)\
-- `$PURGE` Destroys all backups, this command is very dangorous and it will prompt you before executing\
+- `$INFO` Displays program info
+- `$PAUSE` Enables the pausing of the operation after it completes instead of closing
+- `$CMDOUT` Enables command outputs after the operation completes (works best when `$PAUSE` is enabled)
+- `$PURGE` Destroys all backups, this command is very dangorous and it will prompt you before executing
 - `$EXIT` Exits qbak properly
 
 ---
