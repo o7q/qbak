@@ -79,21 +79,19 @@ void program()
      crtRst.open("qbak_reset.bat");
      crtRst << "@echo off\n"
                "color a\necho.\n" +
-                   head_script + ver +
-                   "\necho " + cred +
-                   "\ndel /f \"qbackups\\qbak_cfg\" 2> nul\n"
-                   "echo.\n"
-                   "echo Config reset, you can now specify a new directory.\n"
-                   "echo.\n"
-                   "pause";
+               head_script + ver +
+               "\necho " + cred +
+               "\ndel /f \"qbackups\\qbak_cfg\" 2> nul\n"
+               "echo.\n"
+               "echo Config reset, you can now specify a new directory.\n"
+               "echo.\n"
+               "pause";
      crtRst.close();
 
      // configure visuals
      system("color a");
      string head_display = regex_replace(head, regex("\\$"), "");
-     cout << "\n" +
-                 head_display + ver + "\n" +
-                 cred + "\n";
+     cout << "\n" + head_display + ver + "\n" + cred + "\n";
      string n = cmd_pause == true || cmd_cmdout == true ? "\n" : "";
      cout << n;
      string pause0 = cmd_pause == true ? "- PAUSE: ON\n" : "";
@@ -136,10 +134,7 @@ void program()
                   "To quit, input any other key.\n\n";
           char g;
           cin >> g;
-          if (g == 'G' || g == 'g')
-          {
-               system("start https://github.com/o7q/qbak");
-          }
+          if (g == 'G' || g == 'g') system("start https://github.com/o7q/qbak");
           cinClr();
           clr();
      }
