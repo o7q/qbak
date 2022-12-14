@@ -39,7 +39,7 @@ int bakNum;
 bool cmd_pause;
 bool cmd_cmdout;
 
-main()
+int main()
 {
      system(("title qbak " + ver).c_str());
      
