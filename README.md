@@ -52,4 +52,4 @@ Inserting a `!` before a command tag will disable that command. For example: `$!
 ---
 
 <b>qbak</b> \
-Programmed with C++ and compiled using MinGW G++
+Written in C++ and compiled using MinGW G++
