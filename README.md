@@ -1,3 +1,6 @@
+# This repository is no longer maintained.
+This was one of my C++ applications I made in order to learn C++. I never plan to update it.
+
 <img src="assets/images/readmebanner.png">
 
 # [<b>>> Download Latest</b>](https://github.com/o7q/qbak/releases/download/v1.2.1/qbak.exe)
